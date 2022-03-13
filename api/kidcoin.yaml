@@ -1,0 +1,51 @@
+openapi: 3.1.0
+info:
+  version: 0.0.1
+  title: Kidcoin API
+  description: Track allowance for a family
+
+paths:
+  /transactions:
+    get:
+      description: Return all transactions.
+      operationId: getTransactions
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Transaction"
+  /transactions/{id}:
+    get:
+      description: Return a transaction.
+      operationId: getTransaction
+      responses:
+        '200':
+          description: Successul Operation
+          schema:
+            $ref: "#/components/schemas/Transaction"
+        '404':
+          description: Unknown Transaction
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        amount:
+          type: number
+          format: double
+        note:
+          type: string
+        approved:
+          type: boolean
+
+
+
+
